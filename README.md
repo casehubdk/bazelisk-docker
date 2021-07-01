@@ -1,2 +1,2 @@
 # ibazel-docker
-Ibazel dockerfile
+Ibazel dockerfile base
