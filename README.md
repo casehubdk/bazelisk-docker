@@ -1,2 +1,2 @@
-# ibazel-docker
-Ibazel dockerfile base
+# bazelisk-docker
+bazelisk dockerfile base
