@@ -24,6 +24,11 @@ RUN coursier install scalafmt && \
     ln ~/.local/share/coursier/bin/scalafmt /bin/scalafmt && \
     scalafmt --version
 
+RUN curl -Os https://uploader.codecov.io/latest/linux/codecov && \
+    chmod +x codecov && \
+    mv codecov /bin/codecov && \
+    codecov -h
+
 RUN mkdir /workspace
 
 WORKDIR /workspace
