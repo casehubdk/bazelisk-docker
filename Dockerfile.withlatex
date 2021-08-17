@@ -5,7 +5,7 @@ RUN apt update
 
 RUN mkdir /cab
 
-RUN apt install -y cabextract && \
+RUN apt install -y cabextract wget && \
     wget -q http://downloads.sourceforge.net/corefonts/arial32.exe && \
     cabextract --lowercase --directory=/cab arial32.exe && \
     wget -q http://downloads.sourceforge.net/corefonts/times32.exe && \
