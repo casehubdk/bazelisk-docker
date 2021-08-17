@@ -13,7 +13,7 @@ RUN apt install -y cabextract wget && \
 
 RUN apt install 
 
-FROM openjdk:11-jre-buster
+FROM eu.gcr.io/casehubdk/bazelisk-docker
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN mkdir -p /usr/share/fonts && \
