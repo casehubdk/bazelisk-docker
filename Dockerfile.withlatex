@@ -1,0 +1,32 @@
+FROM eu.gcr.io/casehubdk/bazelisk-docker AS builder
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt update
+
+RUN mkdir /cab
+
+RUN apt install -y cabextract && \
+    wget -q http://downloads.sourceforge.net/corefonts/arial32.exe && \
+    cabextract --lowercase --directory=/cab arial32.exe && \
+    wget -q http://downloads.sourceforge.net/corefonts/times32.exe && \
+    cabextract --lowercase --directory=/cab times32.exe
+
+RUN apt install 
+
+FROM openjdk:11-jre-buster
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN mkdir -p /usr/share/fonts && \
+    mkdir -p /cab
+
+COPY --from=builder /cab /cab
+
+RUN cp /cab/*.ttf /usr/share/fonts && \
+    rm -rf /cab
+
+RUN apt update && \
+    apt install -y texlive-luatex texlive-xetex texlive-lang-european texlive-fonts-extra
+
+WORKDIR /workspace
+
+ENTRYPOINT ["/bin/bazel"]
