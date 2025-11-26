@@ -8,7 +8,7 @@ RUN apt-get update && \
 RUN curl https://git.io/coursier-cli-"$(uname | tr LD ld)" -o /bin/coursier -L && \
   chmod +x /bin/coursier
 
-RUN apt-get install -y openjdk-8-jdk-headless
+RUN apt-get install -y openjdk-8-jdk-headless unzip
 
 # Prepopulate cache
 RUN USE_BAZEL_VERSION=3.5.0 bazel
