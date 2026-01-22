@@ -9,12 +9,12 @@ steps:
     args: ["tag", "eu.gcr.io/casehubdk/bazelisk-docker:$SHORT_SHA", "eu.gcr.io/casehubdk/bazelisk-docker"]
 
   - name: 'gcr.io/cloud-builders/docker'
-    id: "Build the container with latex"
-    args: ["build", "-t", "eu.gcr.io/casehubdk/bazelisk-docker:latex-$SHORT_SHA", "-f", "Dockerfile.withlatex", "."]
-
-  - name: 'gcr.io/cloud-builders/docker'
     id: "Push the container"
     args: ["push", "eu.gcr.io/casehubdk/bazelisk-docker:$SHORT_SHA"]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: "Build the container with latex"
+    args: ["build", "-t", "eu.gcr.io/casehubdk/bazelisk-docker:latex-$SHORT_SHA", "-f", "Dockerfile.withlatex", "."]
 
   - name: 'gcr.io/cloud-builders/docker'
     id: "Push the container with latex"
