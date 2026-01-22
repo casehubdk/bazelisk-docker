@@ -31,7 +31,7 @@ RUN curl -Os https://uploader.codecov.io/latest/linux/codecov && \
 
 RUN mkdir /workspace
 
-RUN  apt-get install python3
+RUN  apt-get install -y python3
 
 # Cleanup apt cache
 RUN rm -rf /var/lib/apt/lists/*
