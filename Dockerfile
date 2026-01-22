@@ -17,7 +17,6 @@ RUN USE_BAZEL_VERSION=8.4.2 bazel
 RUN \
    apt-get -y update && \
    apt-get -y install ca-certificates curl docker.io && \
-   rm -rf /var/lib/apt/lists/* && \
    curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
    chmod +x /usr/local/bin/docker-compose
 
@@ -31,6 +30,11 @@ RUN curl -Os https://uploader.codecov.io/latest/linux/codecov && \
     codecov -h
 
 RUN mkdir /workspace
+
+RUN  apt-get install python3
+
+# Cleanup apt cache
+RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
 
