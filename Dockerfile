@@ -1,8 +1,9 @@
-FROM ubuntu:20.04
+FROM ubuntu:26.04
 
 RUN apt-get update && \
-  apt-get install -y curl build-essential git && \
-  curl https://github.com/bazelbuild/bazelisk/releases/download/v1.9.0/bazelisk-linux-amd64 -o /bin/bazel -L && \
+  apt-get install -y curl build-essential git
+
+RUN curl https://github.com/bazelbuild/bazelisk/releases/download/v1.28.1/bazelisk-linux-amd64 -o /bin/bazel -L && \
   chmod +x /bin/bazel 
 
 RUN curl https://git.io/coursier-cli-"$(uname | tr LD ld)" -o /bin/coursier -L && \
@@ -11,7 +12,7 @@ RUN curl https://git.io/coursier-cli-"$(uname | tr LD ld)" -o /bin/coursier -L &
 RUN apt-get install -y openjdk-8-jdk-headless unzip
 
 # Prepopulate cache
-RUN USE_BAZEL_VERSION=3.5.0 bazel
+RUN USE_BAZEL_VERSION=8.4.2 bazel
 
 RUN \
    apt-get -y update && \
